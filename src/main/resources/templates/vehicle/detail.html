@@ -1,0 +1,48 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
+<head th:replace="~{base :: head('Index - VSAS')}"></head>
+<body>
+	<div th:replace="~{base :: navigation	}"></div>
+	<div class="container">
+		<div th:replace="~{base :: dashboardTitle('Vehicle List')}"></div>
+		<a id="createNew" class="font-weight-light" th:href="@{/VehicleDetail/Create}">Create
+			New</a>
+		<table class="table mt-3">
+			<thead>
+				<tr>
+					<th>Contact Number</th>
+					<th>Registration Number</th>
+					<th>Chassis Number</th>
+					<th>Engine Number</th>
+					<th>Make</th>
+					<th>Make Month</th>
+					<th>make Year</th>
+					<th>Purchase Date</th>
+					<th>Current Odometer Reading</th>
+					<th>Created Date</th>
+					<th>Updated Date</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="vehicle : ${vehicles}">
+					<td th:text="${contactNumber}" id="userDetailId"></td>
+					<td th:text="${vehicle.vehicleRegNumber}" id="registrationNumber"></td>
+					<td th:text="${vehicle.chassisNumber}" id="chasisNumber"></td>
+					<td th:text="${vehicle.engineNumber}" id="engineNumber"></td>
+					<td th:text="${vehicle.make}" id="make"></td>
+					<td th:text="${vehicle.makeMonth}" id="makeMonth"></td>
+					<td th:text="${vehicle.makeYear}" id="makeYear"></td>
+					<td
+						th:text="${#temporals.format(vehicle.purchaseDate, 'dd/MM/yyyy HH:mm:ss a')}" id="purchaseDate"></td>
+					<td th:text="${vehicle.currentOdometerReading}" id="currentOdometerReading"></td>
+					<td th:text="${#temporals.format(vehicle.createdDate, 'dd/MM/yyyy HH:mm:ss a')}" id="createdDate"></td>
+					<td th:text="${#temporals.format(vehicle.updatedDate, 'dd/MM/yyyy HH:mm:ss a')}" id="updatedDate"></td>
+					<td><a th:href="@{/VehicleDetail/Edit/{id}(id=${vehicle.id})}">Edit</a>
+						| <a th:href="@{#}">Details</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

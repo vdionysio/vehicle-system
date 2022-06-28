@@ -1,0 +1,37 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
+<head th:replace="~{base :: head('User List - VSAS')}"></head>
+<body>
+	<div th:replace="~{base :: navigation	}"></div>
+	<div class="container">
+		<div th:replace="~{base :: dashboardTitle('User List')}"></div>
+		<table class="table">
+		<thead>
+			<tr>
+				 <th>First Name</th>
+	 			 <th>Last Name</th>
+	 			 <th>Email Id</th>
+	 			 <th>Contact Number</th>
+	 			 <th>Created Date</th>
+ 	 			 <th>Updated Date</th>
+ 	 			 <th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td th:text="${user.firstName}"></td>
+				<td th:text="${user.lastName}"></td>
+				<td th:text="${user.emailId}"></td>
+				<td th:text="${user.contactNumber}"></td>
+				<td th:text="${#temporals.format(user.createdDate, 'dd/MM/yyyy HH:mm:ss a')}"></td>
+				<td th:text="${#temporals.format(user.updatedDate, 'dd/MM/yyyy HH:mm:ss a')}"></td>
+				<td>
+					<a th:href="@{/UserDetail/Edit/{id}(id=${user.id})}">Edit</a> | 
+					<a th:href="@{#}">Details</a>
+				</td>
+			</tr>		
+		</tbody>
+		</table>
+	</div>
+</body>
+</html>

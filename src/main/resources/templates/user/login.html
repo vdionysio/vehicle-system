@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{base :: head('Login')}"></head>
+<body>
+	<div class="container">
+		<div th:replace="~{base :: welcomeTitle('Login')}"></div>
+		<div class="card">
+			<form th:action="@{/login}" method="post" class="card-body">
+				<div th:if="${param.error}">
+					<div class="alert alert-danger" id="errorMessage">Invalid Attempt. Please try again</div>
+				</div>
+				<div class="mb-3">
+					<label for="emailId">Email Id</label> <input name="username"
+						id="emailId" class="form-control" placeholder="Email" />
+				</div>
+				<div class="mb-3">
+					<label for="passcode">Password</label> <input name="password"
+						id="password" type="password" class="form-control"
+						placeholder="password" />
+				</div>
+				<button class="btn btn-primary" type="submit" id="login">
+					Login</button>
+				<a id="register" class="btn btn-link" th:href="@{/Registration/Create}">Register</a>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

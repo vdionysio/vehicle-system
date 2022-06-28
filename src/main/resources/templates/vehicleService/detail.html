@@ -1,0 +1,42 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
+<head th:replace="~{base :: head('Index - VSAS')}"></head>
+<body>
+	<div th:replace="~{base :: navigation	}"></div>
+	<div class="container">
+		<div
+			th:replace="~{base :: dashboardTitle('Vehicle Service History List')}"></div>
+		<a class="font-weight-light"
+			th:href="@{/VehicleServiceHistory/Create}">Create New</a> <br> <a
+			class="font-weight-light" th:href="@{#}">Process Notification</a>
+		<table class="table mt-3">
+			<thead>
+				<tr>
+					<th>Registration Number</th>
+					<th>Odometer Reading</th>
+					<th>Service Done Date</th>
+					<th>Service Done Details</th>
+					<th>Service Dealer Details</th>
+					<th>Next Service Due Date</th>
+					<th>Created Date</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+
+			<tbody th:each="service : ${services}">
+				<tr>
+					<td th:text="${service.vehicle.vehicleRegNumber}"></td>
+					<td th:text="${service.odometerReading}"></td>
+					<td	th:text="${#temporals.format(service.serviceDoneDate, 'dd/MM/yyyy HH:mm:ss a')}"></td>
+					<td th:text="${service.serviceDetails}"></td>
+					<td th:text="${service.serviceDealerDetails}"></td>
+					<td	th:text="${#temporals.format(service.NextServiceDueDate, 'dd/MM/yyyy HH:mm:ss a')}"></td>
+					<td	th:text="${#temporals.format(service.createdDate, 'dd/MM/yyyy HH:mm:ss a')}"></td>
+					<td><a th:href="@{#}">Details</a></td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+</body>
+</html>

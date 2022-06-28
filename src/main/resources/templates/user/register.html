@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{base :: head('Create - VSAS')}"></head>
+<body>
+	<div class="container">
+		<div th:replace="~{base :: welcomeTitle('Register')}"></div>
+
+		<div class="card">
+
+			<form th:object="${userRegistrationDto}"
+				th:action="@{/Registration/Create}" method="POST" class="card-body">
+				<div class="mb-3">
+					<label for="firstName">First Name</label> <input
+						th:errorclass="is-invalid" th:field="*{firstName}" id="firstName"
+						class="form-control" placeholder="First Name" />
+					<div class="invalid-feedback" th:errors="*{firstName}"></div>
+				</div>
+				<div class="mb-3">
+					<label for="lastName">Last Name</label> <input
+						th:field="*{lastName}" th:errorclass="is-invalid" name="lastName"
+						id="lastName" class="form-control" placeholder="Last Name" />
+					<div class="invalid-feedback" th:errors="*{lastName}"></div>
+				</div>
+				<div class="mb-3">
+					<label for="emailid">Email Id</label> <input th:field="*{emailId}"
+						th:errorclass="is-invalid" name="emailId" id="emailId"
+						class="form-control" placeholder="Email Id" />
+					<div class="invalid-feedback" th:errors="*{emailId}"></div>
+
+				</div>
+				<div class="mb-3">
+					<label for="contactNumber">Contact Number</label> <input
+						th:field="*{contactNumber}" th:errorclass="is-invalid"
+						id="contactNumber" class="form-control"
+						placeholder="Contact Number" />
+					<div class="invalid-feedback" th:errors="*{contactNumber}"></div>
+				</div>
+				<div class="mb-3">
+					<label for="passcode">Passcode</label> <input
+						th:field="*{passcode}" th:errorclass="is-invalid" id="passcode"
+						type="password" class="form-control" placeholder="Passcode" />
+					<div class="invalid-feedback" th:errors="*{passcode}"></div>
+				</div>
+				<button class="btn btn-primary" type="submit" id="register">
+					Register</button>
+				<a id="login" class="btn btn-link" th:href="@{/login}">Login</a>
+				<span id="errorMessage"
+					th:if="${errorMessage}" th:text="${errorMessage}"
+					class="d-flex mt-3 alert alert-danger">Error</span>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

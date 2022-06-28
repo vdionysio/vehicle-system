@@ -1,0 +1,73 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
+<head th:replace="~{base :: head('Create - VSAS')}"></head>
+<body>
+	<div th:replace="~{base :: navigation	}"></div>
+	<div class="container">
+		<div th:replace="~{base :: dashboardTitle('Create')}"></div>
+		<h4 class="font-weight-light">Vehicle Service History</h4>
+		<form th:object="${vehicleServiceDto}"
+			th:action="@{/VehicleServiceHistory/Create}" method="POST"
+			class="card-body">
+
+			<div class="mb-3">
+				<label for="vehicleRegNumber">Registraton Number</label> <br> <select id="vehicleDetailId"
+					th:field="*{vehicleRegNumber}" th:errorclass="is-invalid"
+					class="form-control">
+					<option th:each="regNumber : ${regNumbers}" th:value="${regNumber}"
+						th:text="${regNumber}"></option>
+				</select>
+				<div class="invalid-feedback" th:errors="*{vehicleRegNumber}"></div>
+			</div>
+
+			<div class="mb-3">
+				<label for="odometerReading">Odometer Reading</label> <input
+					th:field="*{odometerReading}" th:errorclass="is-invalid"
+					id="odometerReading" type="text" class="form-control"
+					placeholder="Odometer Reading" />
+				<div class="invalid-feedback" th:errors="*{odometerReading}"></div>
+			</div>
+
+			<div class="mb-3">
+				<label for="serviceDoneDate">Service Done Date</label> <input
+					th:field="*{serviceDoneDate}" th:errorclass="is-invalid"
+					id="serviceDoneDate" type="date" class="form-control"
+					placeholder="Service Done Date" />
+				<div class="invalid-feedback" th:errors="*{serviceDoneDate}"></div>
+			</div>
+
+			<div class="mb-3">
+				<label for="serviceDetails">Service Done Details</label> <input
+					th:field="*{serviceDetails}" th:errorclass="is-invalid"
+					name="serviceDetails" id="serviceDoneDetails" class="form-control"
+					placeholder="Service Done Details" />
+				<div class="invalid-feedback" th:errors="*{serviceDetails}"></div>
+			</div>
+			<div class="mb-3">
+
+				<label for="serviceDealerDetails">Service Dealer Details</label> <input
+					th:field="*{serviceDealerDetails}" th:errorclass="is-invalid"
+					name="engineNumber" id="serviceDealerDetails" class="form-control"
+					placeholder="Service Dealer Details" />
+				<div class="invalid-feedback" th:errors="*{serviceDealerDetails}"></div>
+
+			</div>
+
+			<div class="mb-3">
+				<label for="nextServiceDueDate">Next Service Due Date</label> <input
+					th:field="*{nextServiceDueDate}" th:errorclass="is-invalid"
+					id="nextServiceDueDate" type="date" class="form-control"
+					placeholder="Next Service Due Date" />
+				<div class="invalid-feedback" th:errors="*{nextServiceDueDate}"></div>
+			</div>
+
+			<button class="btn btn-primary" type="submit" id="save">
+				Save</button>
+			<a id="list" class="btn btn-link"
+				th:href="@{/VehicleServiceHistory/Index}">Back to List</a> <span
+				th:if="${errorMessage}" th:text="${errorMessage}" id="errorMessage"
+				class="d-flex mt-3 alert alert-danger">Error</span>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
+<head th:replace="~{base :: head('Dashboard - VSAS')}"></head>
+<body>
+	<div th:replace="~{base :: navigation	}"></div>
+	<div class="container">
+		<div th:replace="~{base :: dashboardTitle('VSAS - Dashboard')}"></div>
+		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+			<li class="nav-item"><a class="nav-link active"
+				aria-current="page" th:href="@{/UserDetail/Index}">User Detail</a></li>
+			<li class="nav-item"><a class="nav-link" th:href="@{/VehicleDetail/Index}">Vehicle Detail</a></li>
+			<li class="nav-item"><a class="nav-link active"
+				aria-current="page" th:href="@{/VehicleServiceHistory/Index}">Vehicle Service Histories</a></li>
+			<li class="nav-item"><a class="nav-link active"
+				aria-current="page" th:href="@{#}">Service Notification Histories</a></li>
+		</ul>
+	</div>
+</body>
+</html>

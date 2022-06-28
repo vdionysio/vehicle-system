@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+<link href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}"
+	rel="stylesheet" />
+<script th:src="@{/js/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/js/logout.js}"></script>
+<style type="text/css">
+.logo {
+	font-size: 2rem;
+}
+</style>
+</head>
+
+<div th:fragment="navigation" class="">
+	<div class="bg-dark text-light d-flex navbar justify-content-start">
+		<span class="logo font-weight-light">VSAS</span>
+		<div class="d-flex align-items-center">
+			<a class="nav-link text-light" th:href="@{/Dashboard/Index}">Home</a>
+			<a class="nav-link text-light"	th:href="@{#}">Privacy</a>
+			<a class="nav-link text-light" id="logout"	onclick="document.querySelector('#form-login').submit()"
+				sec:authorize="isAuthenticated()" href="#">Logout</a>
+		</div>
+		<form id="form-login" th:action="@{/logout}" method="POST"
+			hidden="hidden"></form>
+	</div>
+</div>
+
+<div th:fragment="welcomeTitle(value)" class="mb-4">
+	<div class="container-fluid py-4 bg-light rounded">
+		<h1 class="h3 container-fluid py-2 font-weight-light">Welcome to
+			VSAS</h1>
+	</div>
+	<p th:text="${value}" class="h2 fw-normal"></p>
+</div>
+
+<div th:fragment="dashboardTitle(value)" class="mb-4">
+	<p th:text="${value}" class="h2 fw-normal py-2 font-weight-light"></p>
+</div>
+
+</html>

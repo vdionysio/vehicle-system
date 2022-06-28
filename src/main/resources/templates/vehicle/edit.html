@@ -1,0 +1,108 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
+<head th:replace="~{base :: head('Edit - VSAS')}"></head>
+<body>
+	<div th:replace="~{base :: navigation	}"></div>
+	<div class="container">
+		<div th:replace="~{base :: dashboardTitle('Edit')}"></div>
+		<h4 class="font-weight-light">Vehicle Profile</h4>
+		<form th:object="${vehicleRegistrationDto}"
+			th:action="@{/VehicleDetail/Edit/{id}(id=${id})}" method="POST"
+			class="card-body">
+			<div class="mb-3">
+				<label for="">Contact Number</label> <br> <select
+					id="userDetailId" class="form-select form-control">
+					<option th:text="${contactNumber}"></option>
+				</select>
+			</div>
+			<div class="mb-3">
+				<label for="registrationNumber">Registration Number</label> <input
+					th:errorclass="is-invalid" th:field="*{registrationNumber}"
+					name="registrationNumber" id=”registrationNumber”
+					class="form-control" placeholder="Registration Number" />
+				<div class="invalid-feedback" th:errors="*{registrationNumber}"></div>
+			</div>
+			<div class="mb-3">
+				<label for="chassisNumber">Chassis Number</label> <input
+					th:field="*{chassisNumber}" th:errorclass="is-invalid"
+					name="chassisNumber" id="chasisNumber" class="form-control"
+					placeholder="Last Name" />
+				<div class="invalid-feedback" th:errors="*{chassisNumber}"></div>
+			</div>
+			<div class="mb-3">
+				<label for="engineNumber">Engine Number</label> <input
+					th:field="*{engineNumber}" th:errorclass="is-invalid"
+					name="engineNumber" id="engineNumber" class="form-control"
+					placeholder="Engine Number" />
+				<div class="invalid-feedback" th:errors="*{engineNumber}"></div>
+
+			</div>
+
+			<div class="mb-3">
+				<label for="make">Make</label> <input th:field="*{make}"
+					th:errorclass="is-invalid" id="make" type="text"
+					class="form-control" placeholder="Make" />
+				<div class="invalid-feedback" id=”errorMessage”  th:errors="*{make}"></div>
+			</div>
+
+			<div class="mb-3">
+				<label for="makeMonth">Make Month</label> <select
+					th:field="*{makeMonth}" th:errorclass="is-invalid" name="dob-month"
+					class="form-control" id="makeMonth">
+					<option value=""></option>
+					<option value="1">January</option>
+					<option value="2">February</option>
+					<option value="3">March</option>
+					<option value="4">April</option>
+					<option value="5">May</option>
+					<option value="6">June</option>
+					<option value="7">July</option>
+					<option value="8">August</option>
+					<option value="9">September</option>
+					<option value="10">October</option>
+					<option value="11">November</option>
+					<option value="12">December</option>
+				</select>
+				<div class="invalid-feedback" th:errors="*{makeMonth}"></div>
+			</div>
+
+			<div class="mb-3">
+				<label for="makeYear">Make Year</label> <input
+					th:field="*{makeYear}" th:errorclass="is-invalid" id="makeYear"
+					type="text" class="form-control" placeholder="Make Year" />
+				<div class="invalid-feedback" th:errors="*{makeYear}"></div>
+			</div>
+
+			<div class="mb-3">
+				<label for="purchaseDate">Purchase Date</label> <input
+					th:field="*{purchaseDate}" th:errorclass="is-invalid"
+					id="purchaseDate" name="purchaseDate" type="date"
+					class="form-control" placeholder="Purchase Date" />
+				<div class="invalid-feedback" th:errors="*{purchaseDate}"></div>
+			</div>
+
+			<div class="mb-3">
+				<label for="currentOdometerReading">Current Odometer Reading</label>
+				<input readonly th:field="*{currentOdometerReading}"
+					th:errorclass="is-invalid" id="currentOdometerReading" type="text"
+					class="form-control" placeholder="Current Odometer Reading" />
+				<div class="invalid-feedback" th:errors="*{currentOdometerReading}"></div>
+			</div>
+
+			<div class="mb-3">
+				<label for="createdDate">Created Date</label> <input readonly
+					th:field="*{createdDate}" th:errorclass="is-invalid"
+					id="createdDate" name="createdDate" type="date"
+					class="form-control" />
+				<div class="invalid-feedback" th:errors="*{createdDate}"></div>
+			</div>
+
+			<button class="btn btn-primary" type="submit" id="save">
+				Save</button>
+			<a id="list" class="btn btn-link" th:href="@{/VehicleDetail/Index}">Back
+				to List</a> <span th:if="${errorMessage}" th:text="${errorMessage}"
+				id=”errorMessage”  class="d-flex mt-3 alert alert-danger">Error</span>
+		</form>
+	</div>
+</body>
+</html>
